@@ -23,7 +23,7 @@ class _LRASPP(nn.Module):
     def forward(self, x):
         size = x.size()[2:]
         feat1 = self.b0(x)
-        feat2 = F.avg_pool2d(input=x,kernel_size=(49, 49), stride=(16, 20),padding=0, ceil_mode=False, count_include_pad=True,divisor_override=True)
+        feat2 = F.avg_pool2d(input=x,kernel_size=(49, 49), stride=(16, 20),padding=0, ceil_mode=False, count_include_pad=True)
         feat2 = self.b1(x)
         feat2 = F.interpolate(feat2, size, mode='bilinear', align_corners=True)
         x = feat1 * feat2  # check it
